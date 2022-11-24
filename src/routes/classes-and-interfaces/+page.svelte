@@ -1,11 +1,11 @@
 <script lang="ts">
-    class Department {
+    abstract class Department {
         static fiscalYear = 2023;
         // private readonly id: string;
         // private name: string;
         protected employees: string[] = []
 
-        constructor(private readonly id: string, public name: string) {
+        constructor(protected readonly id: string, public name: string) {
             // this.id = id;
             // this.name = n;
         }
@@ -14,9 +14,7 @@
             return { name: name }
         }
 
-        describe(this: Department) {
-            console.log(`Department (${this.id}): ${this.name}`);
-        }
+        abstract describe(this: Department): void;
 
         addEmployee(employee: string): void {
             // this.id = 'd2'; // its a readonly property
@@ -35,6 +33,10 @@
     class ITDepartment extends Department {
         constructor(id: string, public admins: string[]) {
             super(id, 'IT');
+        }
+
+        describe() {
+            console.log('Accounting Department - ID: ' + this.id);
         }
     }
 
@@ -58,6 +60,10 @@
         constructor(id: string, private reports: string[]) {
             super(id, 'IT');
             this.lastReport = reports[0];
+        }
+
+        describe() {
+            console.log('Accounting Department - ID: ' + this.id);
         }
 
         addEmployee(name: string) {
@@ -99,8 +105,10 @@
     accounting.addEmployee('Max')
     accounting.addEmployee('Manu')
 
-    accounting.printReports()
-    accounting.printEmployeeInformation();
+    // accounting.printReports()
+    // accounting.printEmployeeInformation();
+
+    accounting.describe();
 
     // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
     // accountingCopy.describe(); // not working bacause there are not filled all the properties
