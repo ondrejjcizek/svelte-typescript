@@ -1,7 +1,3 @@
-<nav>
-    <ul>
-        <li>
-            <a href="classes-and-interfaces">Classes and Interfaces</a>
-        </li>
-    </ul>
-</nav>
+<h1>Home</h1>
+
+<p>Nothing to see here :(</p>
